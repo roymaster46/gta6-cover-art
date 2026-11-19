@@ -1,0 +1,128 @@
+{
+  "format": "agent-fun/kit/v1",
+  "competition": "gta6-cover-art-01",
+  "phase": "dev",
+  "bundle_sha256": "998aea9db215e422902bad9b517eb2ed2035a6270d098b56c8c5610a8cd35d2e",
+  "dataset_sha256": null,
+  "harness_version": "harness@3d1314714810ac023d9ea502acb23471f069f1bac76be6caa50ec799b02b63a9 node v26.13.1",
+  "scorer_version": "scorer@9f28476ea231b9d2386964ea291aef8c4832223cbd4fe9231420e3b3a46bbd28 program@7494e46cdc8eae53dc20f675f9cc3ceb0a3949cce4bc2c459f4c2d842bc241c0",
+  "pricing_rev": "6a262a9d0245fc1bb135c62775a6abd481aace3029ff2857a45310eb172ac899",
+  "protocol": "agent-fun/program/v1",
+  "files": [
+    {
+      "path": "RULES.txt",
+      "sha256": "9d4c2e1ea36be1626e05770bdee19900eb9fc28c8ea7f57ce0d4996b37179a08",
+      "size": 109639
+    },
+    {
+      "path": "cli/makefun.mjs",
+      "sha256": "63280bc705c38e9f68e05258f577a742eecda82e72f7b59a89035eb0e3fc016b",
+      "size": 15296236
+    },
+    {
+      "path": "cli/site.json",
+      "sha256": "7f0f8c1f86bb85d07cdf8b8b5b688b08d8b86df44f66b6a7178e839f333a3274",
+      "size": 65
+    },
+    {
+      "path": "competition.yaml",
+      "sha256": "91df598d0549b6bc7559e101a57c79931c2485ae8a2ef1d925fb5107744baa7c",
+      "size": 96681
+    },
+    {
+      "path": "harness/CODE.sha256",
+      "sha256": "07d6b8e14cf25b332a26522713dad38216e9b62512536c2aff330bb9bed2535d",
+      "size": 17071
+    },
+    {
+      "path": "harness/SOURCES.sha256",
+      "sha256": "045b37df122e88cba6beaffdfca9a11b62aa51b3116889a7ae059437350516ba",
+      "size": 17071
+    },
+    {
+      "path": "harness/harness-src.tar.gz",
+      "sha256": "8ddd9c57b18ce9e483cfe95a2b356a04638cd627fd4e6ac56d2884e5088ac25b",
+      "size": 2414157
+    },
+    {
+      "path": "harness/harness-src.tar.gz.sha256",
+      "sha256": "ba7de8d82ff5d10e02c9695d81c1086fadba85fc7cb7a73c21caedf2a429fee7",
+      "size": 85
+    },
+    {
+      "path": "starter/LICENSE",
+      "sha256": "babfa6d8ce941605e507993e42790165d6c98c48365eedbdcdd5350ed6e0ed55",
+      "size": 1095
+    },
+    {
+      "path": "starter/app/index.html",
+      "sha256": "a989c744de710bc216d92c0843262abce0189d33043b87a0350300510a704440",
+      "size": 795
+    },
+    {
+      "path": "starter/app/samples/boulevard.jpg",
+      "sha256": "2e1f1b1ea9735e598cc9d4831c4e30a8814b8b1aaa0e8cb0aa51e007e80d6595",
+      "size": 58675
+    },
+    {
+      "path": "starter/app/samples/pier.jpg",
+      "sha256": "ea7e826faa17d19518b727c858d910d407ac9f255ae2ab50c0f5df40b4319450",
+      "size": 59923
+    },
+    {
+      "path": "starter/app/src/cover.js",
+      "sha256": "939db604591294ab8be86bd96998b65c1ce50f3b21bac092cd100071799309c4",
+      "size": 1360
+    },
+    {
+      "path": "starter/app/src/main.js",
+      "sha256": "ff74d3c23c8ab8b0c3e490fad4eb1e6a95905b8a4cc308527f7552b6bc2e6920",
+      "size": 1571
+    },
+    {
+      "path": "starter/app/src/shots.js",
+      "sha256": "adffea503cc2b2786b6deef82a1e4b4ce8bfcab8551cb0a79d124d87fe57d95b",
+      "size": 545
+    },
+    {
+      "path": "starter/app/style.css",
+      "sha256": "b483fe56af2149f86338c458109ae74a1b3464265ca280ea28d32156060ea6ff",
+      "size": 989
+    },
+    {
+      "path": "starter/main.ts",
+      "sha256": "6ddb810732243d09e64737ab01a2d7979aa039ab86c16239a56da08a253609b7",
+      "size": 2303
+    },
+    {
+      "path": "starter/screenshots/1-cover.jpg",
+      "sha256": "83a1221f49a07156ea7db390151687893883168db54aa419cc422631dda7a377",
+      "size": 128310
+    },
+    {
+      "path": "starter/screenshots/2-editor.jpg",
+      "sha256": "8747b623a11e192dd4506a72ce4169ed1331f46d25711a09bf5ddf7b15293db9",
+      "size": 74474
+    },
+    {
+      "path": "starter/screenshots/3-cover.jpg",
+      "sha256": "2e7a3f3b57ea4e8ec58df4a2ba3a2b8bd1020b6dd88c9dc49c75ccb09e0f8e15",
+      "size": 143887
+    },
+    {
+      "path": "starter/serve.ts",
+      "sha256": "008d00a9335d3a3119d1c87ce3e592806191cbe4627bf1bd07a4757966a5c86d",
+      "size": 2617
+    },
+    {
+      "path": "starter/shots.json",
+      "sha256": "23852d1df95c3f18b10c9ba6443e169ec8fcf7a78df8c066a5f99117348d52ed",
+      "size": 347
+    },
+    {
+      "path": "starter/vendor/makefun-app.ts",
+      "sha256": "14e650adbd6aff7fb760e9bcd7be00dfbe86fb4819afe88dfe23dd0e087e770e",
+      "size": 56181
+    }
+  ]
+}
