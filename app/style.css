@@ -1,0 +1,60 @@
+@font-face {
+  font-family: 'Anton';
+  src: url('./fonts/Anton-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Archivo Black';
+  src: url('./fonts/ArchivoBlack-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+
+html, body { margin: 0; min-height: 100%; background: #12081f; color: #f5eefc; font: 15px/1.45 system-ui, -apple-system, sans-serif; }
+.topbar { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 24px; padding: 14px 24px; background: linear-gradient(90deg, #2b0a4a, #7a1048 55%, #c22a5e); border-bottom: 3px solid #ffd166; }
+.brand { font-family: 'Anton', system-ui, sans-serif; font-size: 30px; letter-spacing: 2px; color: #fff; }
+.brand em { font-family: system-ui, sans-serif; font-style: normal; font-size: 15px; letter-spacing: 1px; color: #ffd166; }
+.sun-dot { display: inline-block; width: 18px; height: 18px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #ffe259, #ff7e3d 60%, #ff2e63); margin-right: 6px; vertical-align: -1px; }
+.topbar .tag { margin: 0; color: #ffd9ec; font-size: 13px; }
+.app { display: flex; gap: 28px; align-items: flex-start; justify-content: center; padding: 22px; box-sizing: border-box; }
+.controls { display: flex; flex-direction: column; gap: 14px; width: 340px; flex: none; }
+.controls h1 { margin: 0; font-family: 'Anton', system-ui, sans-serif; font-size: 30px; letter-spacing: 1px; }
+.steps { display: flex; gap: 6px; flex-wrap: wrap; margin: 0; padding: 0; list-style: none; }
+.steps li { background: #2b0a4a; border: 1px solid #5b2a86; border-radius: 999px; padding: 3px 10px; font-size: 12px; color: #e9d5ff; }
+fieldset { border: 1px solid #4a2566; border-radius: 10px; padding: 12px; margin: 0; background: #1c0b2e; }
+legend { font-weight: 700; color: #ffd166; padding: 0 6px; }
+label { display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 13px; margin-bottom: 8px; }
+label.check { flex-direction: row; align-items: center; gap: 6px; margin: 0; }
+input[type=text], select { font: inherit; padding: 8px; border: 1px solid #6b3a94; border-radius: 6px; background: #12081f; color: #fff; }
+input[type=range] { width: 100%; accent-color: #ff2ea6; }
+.file-label { cursor: pointer; }
+.file-label input { cursor: pointer; }
+button { font: inherit; font-weight: 700; padding: 8px 12px; border: 1px solid #6b3a94; border-radius: 8px; background: #2b0a4a; color: #fff; cursor: pointer; }
+button:hover { border-color: #ff2ea6; }
+button.active { background: #ff2ea6; border-color: #ff2ea6; }
+button.export { width: 100%; padding: 12px; font-size: 17px; background: linear-gradient(90deg, #ff7e3d, #ff2e63); border: 0; }
+.row { display: flex; gap: 8px; flex-wrap: wrap; }
+.row button { flex: 1; }
+.pick-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
+.pick-row .pick { flex: 1 1 30%; font-size: 13px; padding: 7px 6px; }
+.swatch { flex: 1 1 28%; min-width: 74px; font-size: 12px; text-shadow: 0 1px 2px rgba(0,0,0,.7); }
+.swatch.small { flex: 0 0 34px; min-width: 34px; height: 30px; padding: 0; }
+.thumbs { display: flex; gap: 8px; flex-wrap: wrap; }
+.thumb { padding: 0; border: 2px solid #6b3a94; border-radius: 6px; overflow: hidden; width: 76px; height: 56px; }
+.thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hint { margin: 4px 0; color: #b9a3d1; font-size: 12.5px; }
+.stage { flex: 1; max-width: 760px; position: sticky; top: 16px; }
+.stage canvas { width: 100%; height: auto; display: block; border-radius: 6px; box-shadow: 0 12px 44px rgba(0,0,0,.55); touch-action: none; cursor: grab; }
+.stage canvas:active { cursor: grabbing; }
+.foot { padding: 10px 24px 18px; color: #8f76ad; font-size: 12px; text-align: center; }
+
+body.shot-cover .topbar, body.shot-cover .controls, body.shot-cover .foot, body.shot-cover .stage .hint { display: none; }
+body.shot-cover .app { padding: 0; }
+body.shot-cover .stage { max-width: none; position: static; }
+body.shot-cover canvas { width: 100vw; height: 100vh; object-fit: contain; border-radius: 0; box-shadow: none; background: #12081f; }
+@media (max-width: 900px) {
+  .app { flex-direction: column; }
+  .controls { width: 100%; }
+  .stage { position: static; max-width: none; width: 100%; }
+}

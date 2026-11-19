@@ -1,11 +1,9 @@
-// A working gta6-cover-art-01 entry (Node 22, standard library only): the app is this directory's app/ folder, plain
-// static files a desktop browser loads offline (app/index.html and its ES modules, no library and no network
-// request), and the program hands it in. It copies app/ and screenshots/ from beside this file to /output and writes
-// /output/dossier.json, the summary the judge reads, with the vendored make.fun library. Only the plumbing, not the
-// cover art the bounty asks for: Cover Snap, a plain one-photo square cover with a sunset tint and a bold caption,
-// exported as a 1080 x 1080 PNG. Its two sample photos (app/samples/) were made for make.fun with an image model and
-// are free to use. Build your own GTA-style cover maker in its place, put your 3 or 4 PNG or JPEG screenshots in
-// screenshots/ (the first by name is the cover) and run it.
+// Neon Bay Cover Maker — gta6-cover-art-01 entry (Node 22, standard library only).
+// The app is this directory's app/ folder: plain static files a desktop browser
+// loads offline (app/index.html and its ES modules, shipped OFL fonts, no network
+// request). This program hands it in: it copies app/ and screenshots/ from beside
+// this file to /output and writes /output/dossier.json, the summary the judge
+// reads, with the vendored make.fun library.
 //
 // Serve it locally with `node serve.ts`, then open http://localhost:8080.
 // Outside the grader's container, MAKEFUN_OUTPUT_DIR stands in for /output:
@@ -18,6 +16,16 @@ import { buildDossier } from './vendor/makefun-app.ts';
 
 const here = fileURLToPath(new URL('.', import.meta.url));
 const out = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
+
+// Fail fast with a clear message instead of copying half an entry: the grader
+// runs this twice and both runs must write the same bytes, so a missing app/
+// or screenshots/ is an error here, not a silent partial output.
+if (!existsSync(join(here, 'app', 'index.html'))) {
+  throw new Error('app/index.html is missing — nothing to hand in');
+}
+if (!existsSync(join(here, 'screenshots'))) {
+  throw new Error('screenshots/ is missing — the entry needs 3 or 4 screenshots');
+}
 
 mkdirSync(out, { recursive: true });
 cpSync(join(here, 'app'), join(out, 'app'), { recursive: true });
