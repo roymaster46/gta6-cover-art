@@ -2,6 +2,8 @@
 // locally without a build step: `node serve.ts` serves app/ on http://localhost:8080.
 // It sends the MIME types an offline web app needs, refuses any path outside app/, and otherwise
 // does nothing clever: this is a development convenience, not a web server for the internet.
+// Error bodies name the problem (and the path, for 404s) so a failed curl shows
+// what went wrong instead of a bare status word.
 import { createReadStream, statSync } from 'node:fs';
 import { createServer } from 'node:http';
 import { extname, join, normalize, resolve, sep } from 'node:path';
@@ -44,13 +46,13 @@ createServer((request, response) => {
   try {
     pathname = decodeURIComponent(url.pathname);
   } catch {
-    response.writeHead(400).end('bad request');
+    response.writeHead(400).end('bad request: the URL could not be decoded');
     return;
   }
   if (pathname.endsWith('/')) pathname += 'index.html';
   const file = resolve(join(root, normalize(pathname)));
   if (file !== root && !file.startsWith(root + sep)) {
-    response.writeHead(403).end('forbidden');
+    response.writeHead(403).end('forbidden: path outside app/');
     return;
   }
   let size;
@@ -59,7 +61,7 @@ createServer((request, response) => {
     if (!stats.isFile()) throw new Error('not a file');
     size = stats.size;
   } catch {
-    response.writeHead(404).end('not found');
+    response.writeHead(404).end('not found: ' + pathname);
     return;
   }
   response.writeHead(200, {
