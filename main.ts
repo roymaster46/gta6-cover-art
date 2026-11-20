@@ -9,7 +9,7 @@
 // Outside the grader's container, MAKEFUN_OUTPUT_DIR stands in for /output:
 //   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
 
-import { cpSync, existsSync, mkdirSync, writeFileSync } from 'node:fs';
+import { cpSync, existsSync, mkdirSync, statSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildDossier } from './vendor/makefun-app.ts';
@@ -25,6 +25,16 @@ if (!existsSync(join(here, 'app', 'index.html'))) {
 }
 if (!existsSync(join(here, 'screenshots'))) {
   throw new Error('screenshots/ is missing — the entry needs 3 or 4 screenshots');
+}
+
+// The Key Art default ships six different sample photos, one per panel;
+// a missing sample would silently render an empty placeholder panel, so
+// refuse to hand in instead of copying a broken default.
+const SAMPLE_FILES = ['insider.jpg', 'boss.jpg', 'driver.jpg', 'rider.jpg', 'boulevard.jpg', 'pier.jpg'];
+for (const f of SAMPLE_FILES) {
+  if (!existsSync(join(here, 'app', 'samples', f))) {
+    throw new Error(`app/samples/${f} is missing — the Key Art default needs all six sample photos`);
+  }
 }
 
 mkdirSync(out, { recursive: true });
@@ -46,3 +56,15 @@ writeFileSync(
     app_path_max_bytes: 1000,
   }),
 );
+
+// The sample manifest lives beside dossier.json, never inside it: the
+// scorer requires dossier.json to byte-equal what buildDossier writes, so
+// the manifest (sample file names + bytes) is its own file.
+const samplesManifest = {
+  template: 'keyart',
+  samples: SAMPLE_FILES.map((f) => ({
+    file: `samples/${f}`,
+    bytes: statSync(join(here, 'app', 'samples', f)).size,
+  })),
+};
+writeFileSync(join(out, 'samples-manifest.json'), JSON.stringify(samplesManifest, null, 2) + '\n');

@@ -13,12 +13,20 @@ it as a PNG to post. Built for the [GTA 6 Cover Art bounty](https://make.fun/bou
 - **Any photo:** load photos from your machine, crop and position each one (drag on
   the cover, or use the zoom / pan sliders), fill several panels with one photo or
   several, shuffle for ideas.
-- **Multi-panel posters:** 5 layouts — Vice Trio (hero + 2 stacked), Comic Six
-  (3×2 grid), Duo Split, Hero Shot (full-bleed), Sunset Strip (wide hero + 3 below).
-- **Colour grades:** Sunset, Neon, Dusk, Noir, Teal Gold — one click re-grades
-  every panel.
+- **Key Art layout (default):** 6 different photos — hero driver in the centre,
+  insider, boss, rider and courier around her, fisherman strip below — each with
+  its role tag, on a dark frame with thin gold gutters. Chrome gradient title
+  (white → gold → pink → violet) with a pink script subtitle, a five-star quote
+  bar, VOL. 1 badge, starburst "ORIGINAL COVER ART" seal, billing block,
+  barcode and COMING SOON — the full print finish, drawn in the canvas.
+- **Multi-panel posters:** 6 layouts — Key Art (default), Vice Trio (hero + 2
+  stacked), Comic Six (3×2 grid), Duo Split, Hero Shot (full-bleed), Sunset
+  Strip (wide hero + 3 below).
+- **Colour grades:** Sunset (golden-hour, boosted saturation), Neon, Dusk, Noir,
+  Teal Gold — one click re-grades every panel.
 - **Lettering:** bold condensed title (Anton, SIL OFL) with outline, neon shadow,
-  5 colours, size and top/bottom position, plus subtitle and tagline.
+  5 colours, size and top/bottom position, plus script subtitle (Yellowtail, SIL
+  OFL) and tagline.
 - **Fast:** 4 steps from photo to PNG — add photos, pick layout & grade, write the
   caption, export. 1-click export in the common post sizes: **1080×1080**,
   **1080×1350**, **1920×1080**.
@@ -35,8 +43,20 @@ node serve.ts
 ## Originality
 
 All art is original: no Rockstar Games logo, wordmark, official artwork, character
-or font. Display type is Anton and Archivo Black, both SIL Open Font License, shipped
-under `app/fonts/`. The two sample photos were made with an image model for make.fun.
+or font. Display type is Anton and Archivo Black, script type is Yellowtail — all
+SIL Open Font License, shipped under `app/fonts/`. The six sample photos were made
+with an image model for make.fun.
+
+## v2 — Key Art rebuild
+
+- New default template **Key Art**: 6 panels, 6 different sample photos, role
+  tags, dark frame + gold gutters, chrome title, script subtitle, and the full
+  print finish (quote bar, VOL. 1, seal, billing, barcode, COMING SOON).
+- Sunset grade boosted (saturation 1.4, contrast 1.1, stronger warm tint).
+- `main.ts` now refuses to hand in when any of the six sample photos is missing
+  and writes a `samples-manifest.json` (file names + bytes) beside `dossier.json`.
+- Screenshots re-shot from the rebuilt app (square cover, editor, wide cover,
+  portrait cover), 0 JS errors.
 
 ## Hand-in
 

@@ -1,6 +1,6 @@
 // Wires the Neon Bay cover maker: photo uploads, panel picking and dragging,
 // template and grade pickers, caption and typography controls, and 1-click PNG export.
-import { TEMPLATES, GRADES, SIZES, TITLE_COLORS, defaultState, panelsFor } from './presets.js';
+import { TEMPLATES, GRADES, SIZES, TITLE_COLORS, SAMPLE_FILES, defaultState, panelsFor } from './presets.js';
 import { drawCover, exportCover, templateById } from './cover.js';
 import { runShot } from './shots.js';
 
@@ -172,6 +172,11 @@ async function addPhotos(files) {
 $('photo').addEventListener('change', (e) => addPhotos([...e.target.files]));
 $('samplePier').addEventListener('click', () => addPhotos(['samples/pier.jpg']));
 $('sampleBoulevard').addEventListener('click', () => addPhotos(['samples/boulevard.jpg']));
+$('sampleDriver').addEventListener('click', () => addPhotos(['samples/driver.jpg']));
+$('sampleInsider').addEventListener('click', () => addPhotos(['samples/insider.jpg']));
+$('sampleBoss').addEventListener('click', () => addPhotos(['samples/boss.jpg']));
+$('sampleRider').addEventListener('click', () => addPhotos(['samples/rider.jpg']));
+$('sampleAll').addEventListener('click', () => addPhotos(SAMPLE_FILES));
 
 $('fillAll').addEventListener('click', () => {
   const slot = state.panels[state.selectedPanel];
@@ -260,7 +265,7 @@ renderThumbs();
 
 const query = new URLSearchParams(location.search);
 if (query.get('shot')) {
-  runShot(query.get('shot'), query, async (shotState, sample) => {
+  runShot(query.get('shot'), query, async (shotState) => {
     Object.assign(state, shotState);
     state.panels = panelsFor(state.template, state.panels);
     $('title').value = state.title;
@@ -270,13 +275,18 @@ if (query.get('shot')) {
     renderGrades();
     renderTitleColors();
     renderSizes();
-    await addPhotos([sample]);
+    // The Key Art default needs all six samples, one per panel, in the
+    // SAMPLE_FILES order the default state was built against.
+    await addPhotos(SAMPLE_FILES);
+    state.panels = state.panels.map((p, i) => ({ ...p, photo: i < photos.length ? i : -1 }));
     // A cover shot shows the finished export: no selection outline.
     if (query.get('shot') === 'cover') state.selectedPanel = -1;
-    state.panels.forEach((p, i) => { if (i > 0) p.photo = p.photo < 0 ? 0 : p.photo; });
-    state.panels[2] = state.panels[2] ?? { photo: 0, zoom: 1.2, panX: -0.06, panY: 0.04 };
+    // Paint again once the webfonts are in, so the chrome title and the
+    // script subtitle never render in a fallback face.
+    await document.fonts.ready;
     redraw();
   });
 } else {
   redraw();
+  document.fonts.ready.then(() => redraw());
 }
